@@ -1,13 +1,17 @@
 import telebot
 from token_telegram import token
 
-
+#Import token from token_telegram.py
 bot = telebot.TeleBot(token)
 
-
+#Handle command /help and return "hello message"
 @bot.message_handler(commands=['help'])
 def welcome(message):
     bot.reply_to(message, 'Hi, ' + message.from_user.username + '!')
+    
+@bot.message_handler(content_types=['sticker'])
+def stiker(message):
+    bot.send_sticker(message.chat.id, message.sticker.file_id)
     
 
 # handle text send echo reply and save it to text_log
