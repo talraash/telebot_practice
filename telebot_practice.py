@@ -8,10 +8,13 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(commands=['help'])
 def welcome(message):
     bot.reply_to(message, 'Hi, ' + message.from_user.username + '!')
-    
+
+
+#Handle sticker and returne it with emoji
 @bot.message_handler(content_types=['sticker'])
 def stiker(message):
     bot.send_sticker(message.chat.id, message.sticker.file_id)
+    bot.reply_to(message, "You sticker mean" + message.sticker.emoji)
     
 
 # handle text send echo reply and save it to text_log
@@ -22,4 +25,4 @@ def echo_all(message):
         text.write(message.text + '\n')
     
     
-bot.polling(none_stop=True, interval=2)
+bot.polling(none_stop=True, interval=1)
