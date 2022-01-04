@@ -18,6 +18,22 @@ def cat():
     return str(file)
 
 
+@dp.message_handler(commands='cat')
+async def reply(message: types.Message):
+    file = cat()
+    await bot.send_photo(message.chat.id, file)
+
+
+@dp.message_handler(commands='help')
+async def reply2(message: types.Message):
+    await message.answer(f'Hi, {message.chat.username}. Just send /cat and you got some reward')
+
+
+@dp.message_handler(commands='start')
+async def reply2(message: types.Message):
+    await message.answer(f'Hi, {message.chat.username} {emojize(":wink:")} Just send /cat and you got some reward')
+
+
 @dp.message_handler()
 async def get_fantlab_content(message: types.Message):
     async with aiohttp.ClientSession() as session:
@@ -39,21 +55,6 @@ async def get_fantlab_content(message: types.Message):
             if number_elements == 0:
                 break
 
-
-@dp.message_handler(commands='cat')
-async def reply(message: types.Message):
-    file = cat()
-    await bot.send_photo(message.chat.id, file)
-
-
-@dp.message_handler(commands='help')
-async def reply2(message: types.Message):
-    await message.answer(f'Hi, {message.chat.username}. Just send /cat and you got some reward')
-
-
-@dp.message_handler(commands='start')
-async def reply2(message: types.Message):
-    await message.answer(f'Hi, {message.chat.username} {emojize(":wink:")} Just send /cat and you got some reward')
 
 
 
