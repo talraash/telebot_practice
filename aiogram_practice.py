@@ -1,10 +1,9 @@
 from aiogram import Bot, Dispatcher, executor, types
-from telegram_token import token
+from token import token
 import requests as req
 import aiohttp
 from aiogram.utils.emoji import emojize
 from bs4 import BeautifulSoup
-import lxml.html
 
 bot = Bot(token, parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot)
